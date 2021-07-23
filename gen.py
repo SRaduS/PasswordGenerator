@@ -16,23 +16,25 @@ link = Label(window, text = "Guide For Creating A Strong Password!", fg="blue", 
 link.bind("<Button-1>", lambda e: callback("https://blog.avast.com/strong-password-ideas"))
 link.pack()
 
-# function for input validation/enforcement
-def callback(input):
-    if input.isdigit():
-        if int(input) > 3:
-            return True
+def validate(length):
+    try:
+        int(length)
+        if int(length) <= 3:
+            error_label.config(text="Input should be bigger than 3!")
+        else:
+            error_label.config(text="")
+    except ValueError:
+        error_label.config(text="Input must be a number")
     else:
-        return False
-        print("Input must be a digit bigger than 3!")
-reg = window.register(callback)
+        return int(length)
 
 def rand_password():
     # clear box
     pass_entry.delete(0, END)
 
-    # get length, convert to integer
-    pass_length = int(entry.get())
-    
+    # validate entry
+    pass_length = entry.get()
+    pass_length = validate(pass_length)
     # create variable to store password
     actual_password = ""
 
@@ -48,11 +50,7 @@ def rand_password():
         actual_password += random.choice(string.punctuation)
     for i in range(numeric):
         actual_password += random.choice(string.digits)
-    
-    # loop through password length
-    #for i in range (alpha):
-    #    actual_password += chr(randint(33, 126))
-    
+        
     # rearrange the password's characters randomly
     actual_password = list(actual_password)
     random.shuffle(actual_password)
@@ -66,7 +64,6 @@ def clip_password():
     
     # copy to clipboard
     window.clipboard_append(pass_entry.get())
-    pass
 
 # create label frame for input entry
 label = LabelFrame(window, text="Password Length")
@@ -75,7 +72,6 @@ label.pack(pady=40)
 # create entry for geting input
 entry = Entry(label, font=("Times New Roman", 24))
 entry.pack(padx=20, pady=20)
-entry.config(validate="key", validatecommand=(reg, "%S"))
 
 # display password
 pass_entry = Entry(window, text="", font=("Times New Roman", 24), bd=0, bg="systembuttonface")
@@ -86,11 +82,14 @@ b_frame = Frame(window)
 b_frame.pack(pady=20)
 
 # create buttons
-button = Button(b_frame, text="Generate Password", command=rand_password)
+button = Button(b_frame, text="Generate Password", command=lambda : rand_password())
 button.grid(row=0, column=0, padx=10)
 
 clip_button = Button(b_frame, text="Copy To Clipboard", command=clip_password)
 clip_button.grid(row=0, column=1, padx=10)
+
+error_label = Label(window, text="")
+error_label.pack()
 
 
 window.mainloop()

@@ -1,5 +1,5 @@
 # PasswordGenerator
-My first real project in python! A strong password generator using Tkinter
+A strong password generator using Tkinter!
 
 ## How To Generate A Password?
 Using the entry box to choose a password length and then pressing the "Generate Password" button you would be able to generate a strong enough password for your personal/work accounts
@@ -15,3 +15,7 @@ If you want to copy the password you could easily do so after generating it usin
 1. Clone the github repository in your local system using `git clone https://github.com/SRaduS/PasswordGenerator.git`
 2. Move into the directory `cd PasswordGenerator`
 3. Run python file `python gen.py`
+
+## Dependencies
+- Python
+- Tkinter
