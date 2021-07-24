@@ -17,10 +17,18 @@ link.bind("<Button-1>", lambda e: callback("https://blog.avast.com/strong-passwo
 link.pack()
 
 def validate(length):
+    """
+    Takes as input an int -> length
+
+    In addition to returning a variable, it also changes the error label text depending on the input
+    type and size
+
+    returns length as an int
+    """
     try:
         int(length)
         if int(length) <= 3:
-            error_label.config(text="Input should be bigger than 3!")
+            error_label.config(text="Input should be bigger than 3 for a more secure password!")
         else:
             error_label.config(text="")
     except ValueError:
@@ -29,6 +37,12 @@ def validate(length):
         return int(length)
 
 def rand_password():
+    """
+    To generate the password the function randomly selects 1/3 of the password to be numeric, 1/3 - symbols
+    and the rest to be alphabetic characters
+
+    returns a new randomly generated password
+    """
     # clear box
     pass_entry.delete(0, END)
 
@@ -59,6 +73,9 @@ def rand_password():
     pass_entry.insert(0, actual_password)
 
 def clip_password():
+    """
+    Adds the newly generated password to clipboard
+    """
     # clear the clipboard
     window.clipboard_clear()
     
@@ -87,6 +104,7 @@ button.grid(row=0, column=0, padx=10)
 
 clip_button = Button(b_frame, text="Copy To Clipboard", command=clip_password)
 clip_button.grid(row=0, column=1, padx=10)
+
 
 error_label = Label(window, text="")
 error_label.pack()
