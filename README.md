@@ -19,3 +19,5 @@ If you want to copy the password you could easily do so after generating it usin
 ## Dependencies
 - Python
 - Tkinter
+
+![Screenshot](Screenshot 2021-07-24 212607.png)
