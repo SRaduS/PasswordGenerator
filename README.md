@@ -20,4 +20,4 @@ If you want to copy the password you could easily do so after generating it usin
 - Python
 - Tkinter
 
-![Screenshot](Screenshot 2021-07-24 212607.png)
+![Screenshot](https://github.com/SRaduS/PasswordGenerator/blob/main/Screenshot%202021-07-24%20212607.png)
